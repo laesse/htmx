@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import One from './contact/[id]/index.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="container mx-auto text-center">
-		<div class="">hello soi dora</div>
+	<main
+		class="container mx-auto flex justify-center items-center text-center h-screen overflow-hidden"
+	>
+		<One />
 	</main>
 </Layout>

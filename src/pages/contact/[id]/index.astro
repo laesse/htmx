@@ -1,0 +1,31 @@
+---
+const { id } = Astro.params;
+const getContact = async () => {
+    if (Astro.request.method === 'PUT') {
+        const params = new URLSearchParams(await Astro.request.text());
+        return {
+            firstName: params.get('firstName'),
+            lastName: params.get('lastName'),
+            email: params.get('email'),
+        };
+    }
+    const joeMama = { firstName: 'joe', lastName: 'mama', email: 'joe.mama@gmail.com' };
+    return joeMama;
+};
+const { firstName, lastName, email } = await getContact();
+---
+
+<div hx-target="this" hx-swap="outerHTML">
+    <div>
+        <label>First Name</label>: {firstName}
+    </div>
+    <div>
+        <label>Last Name</label>: {lastName}
+    </div>
+    <div>
+        <label>Email</label>: {email}
+    </div>
+    <button hx-get="/contact/1/edit" class="bg-indigo-600 rounded shadow p-2">
+        Click To Edit
+    </button>
+</div>

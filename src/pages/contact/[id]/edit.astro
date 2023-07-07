@@ -1,0 +1,15 @@
+---
+const { id } = Astro.params;
+---
+
+<form hx-put="/contact/1" hx-target="this" hx-swap="outerHTML" class="grid gap-1 grid-cols-2">
+    <label>First Name</label>
+    <input type="text" name="firstName" value="Joe" class="text-gray-950" />
+
+    <label>Last Name</label>
+    <input type="text" name="lastName" value="Blow" class="text-gray-950" />
+    <label>Email Address</label>
+    <input type="email" name="email" value="joe@blow.com" class="text-gray-950" />
+    <button class="bg-indigo-600 rounded shadow p-2">Submit</button>
+    <button class="bg-indigo-600 rounded shadow p-2" hx-get="/contact/1">Cancel</button>
+</form>
