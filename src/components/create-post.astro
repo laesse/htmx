@@ -1,0 +1,23 @@
+---
+interface Props {
+    author: string;
+}
+const { author } = Astro.props;
+---
+
+<form hx-put="/post/create" class="flex flex-col gap-2">
+    <textarea
+        name="content"
+        id="content"
+        cols="50"
+        rows="3"
+        placeholder="What's on your mind?"
+        class="resize-none bg-transparent accent-transparent focus-visible:outline-none"
+    ></textarea>
+    <input type="hidden" name="author" id="author" value={author} />
+    <input
+        type="submit"
+        value="create Post"
+        class="rounded-full bg-indigo-600 p-3 self-end"
+    />
+</form>

@@ -1,0 +1,20 @@
+---
+import { getRelativeTime } from "../utils";
+import type { PostWithAuthor } from "../db/model";
+
+interface Props {
+    post: PostWithAuthor;
+}
+const { post } = Astro.props;
+---
+
+<article
+    class="rounded-xl flex flex-col border-blue-200 border py-2 gap-2 hover:bg-sky-900"
+>
+    <div class="flex gap-2 mx-2 text-blue-200">
+        <b class="font-bold">@{post.author.username}</b>
+        <span class="text-slate-400">{getRelativeTime(post.created)}</span>
+    </div>
+
+    <p class="col-span-2 flex-grow mx-2">{post.content}</p>
+</article>

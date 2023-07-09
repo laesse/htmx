@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1688842540268,
+      "tag": "0000_hot_nightshade",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1688851368673,
+      "tag": "0001_heavy_young_avengers",
+      "breakpoints": true
+    }
+  ]
+}

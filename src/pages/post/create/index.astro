@@ -1,0 +1,26 @@
+---
+import { insertPost } from "../../../db/model";
+import type { NewPost } from "../../../db/schema";
+import CreatePost from "../../../components/create-post.astro";
+
+if (Astro.request.method === "PUT") {
+    const params = new URLSearchParams(await Astro.request.text());
+    const content = params.get("content");
+    const author = params.get("author");
+    if (!content || !author) {
+        return new Response("Missing content", { status: 400 });
+    }
+
+    const newPost: NewPost = {
+        content: content,
+        authorFk: author,
+    };
+    Astro.response.headers.set("HX-Trigger", "new-post");
+
+    await insertPost(newPost);
+}
+---
+
+<div id="new-post-area" hx-swap="outerHTML" class="w-full">
+    <CreatePost author="d100a8e7-7aeb-421b-b523-51dc53d8a845" />
+</div>
