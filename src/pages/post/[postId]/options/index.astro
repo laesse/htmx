@@ -1,0 +1,28 @@
+---
+import OptionsButton from "../../../../components/options-button.astro";
+const { postId } = Astro.params;
+
+if (!postId) {
+    return new Response(null, {
+        status: 400,
+        statusText: "Bad Request",
+    });
+}
+---
+
+<OptionsButton isOpen={true} postId={postId} />
+<div class="bg-slate-400 text-black right-6 z-50 absolute rounded">
+    <ul class="divide-y divide-slate-950 text-center">
+        <li
+            class="px-4 py-1 hover:bg-slate-500"
+            hx-delete={`/post/${postId}`}
+            hx-target={`#post-${postId}`}
+            hx-confirm="Are you sure you want to delete this post?"
+            role="button"
+            tabindex="0"
+        >
+            Delete
+        </li>
+        <li class="px-4 py-1 hover:bg-slate-500">other action</li>
+    </ul>
+</div>

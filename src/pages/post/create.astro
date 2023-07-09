@@ -1,9 +1,9 @@
 ---
-import { insertPost } from "../../../db/model";
-import type { NewPost } from "../../../db/schema";
-import CreatePost from "../../../components/create-post.astro";
+import { insertPost } from "../../db/model";
+import type { NewPost } from "../../db/schema";
+import CreatePost from "../../components/create-post.astro";
 
-if (Astro.request.method === "PUT") {
+if (Astro.request.method === "POST") {
     const params = new URLSearchParams(await Astro.request.text());
     const content = params.get("content");
     const author = params.get("author");
@@ -15,7 +15,7 @@ if (Astro.request.method === "PUT") {
         content: content,
         authorFk: author,
     };
-    Astro.response.headers.set("HX-Trigger", "new-post");
+    Astro.response.headers.set("HX-Trigger", "reload-posts");
 
     await insertPost(newPost);
 }

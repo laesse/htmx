@@ -5,7 +5,7 @@ interface Props {
 const { author } = Astro.props;
 ---
 
-<form hx-put="/post/create" class="flex flex-col gap-2">
+<form hx-post="/post/create" class="flex flex-col gap-2">
     <textarea
         name="content"
         id="content"

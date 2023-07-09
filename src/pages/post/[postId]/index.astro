@@ -1,0 +1,17 @@
+---
+import { deletePost } from "../../../db/model";
+
+const { postId } = Astro.params;
+if (Astro.request.method === "DELETE") {
+    if (!postId) {
+        return new Response(null, {
+            status: 400,
+            statusText: "Bad Request",
+        });
+    }
+    await deletePost(postId);
+    Astro.response.headers.set("HX-Trigger", "reload-posts");
+}
+---
+
+<div></div>

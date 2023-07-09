@@ -1,0 +1,51 @@
+---
+import {
+    getLikeCount,
+    hasUserLikedPost,
+    likePost,
+    remvoeLike,
+} from "../../../db/model";
+
+const { postId } = Astro.params;
+
+if (!postId) {
+    return new Response(400, "Missing post id");
+}
+if (Astro.request.method === "PUT") {
+    await likePost("d100a8e7-7aeb-421b-b523-51dc53d8a845", postId);
+}
+if (Astro.request.method === "DELETE") {
+    await remvoeLike("d100a8e7-7aeb-421b-b523-51dc53d8a845", postId);
+}
+
+const likes = (await getLikeCount(postId))[0];
+const userLikedPost = await hasUserLikedPost(
+    "d100a8e7-7aeb-421b-b523-51dc53d8a845",
+    postId
+);
+
+const attributes = {
+    ...(userLikedPost
+        ? { "hx-delete": `/post/${postId}/likes` }
+        : { "hx-put": `/post/${postId}/likes` }),
+};
+---
+
+<div class="flex gap-2" hx-swap="outerHTML" {...attributes}>
+    <svg
+        class="w-6 h-6 mx-auto fill-slate-300 data-[user-liked-post=true]:fill-red-400"
+        data-user-liked-post={userLikedPost.toString()}
+        height="512px"
+        version="1.1"
+        viewBox="0 0 512 512"
+        width="512px"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+        <path
+            d="M340.8,83C307,83,276,98.8,256,124.8c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6  L245.1,418l10.9,11l10.9-11l148.3-149.8c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z"
+        >
+        </path>
+    </svg>
+    <span>{likes.cnt}</span>
+</div>

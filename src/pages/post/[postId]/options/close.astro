@@ -1,0 +1,13 @@
+---
+import OptionsButton from "../../../../components/options-button.astro";
+const { postId } = Astro.params;
+
+if (!postId) {
+    return new Response(null, {
+        status: 400,
+        statusText: "Bad Request",
+    });
+}
+---
+
+<OptionsButton isOpen={false} postId={postId} />

@@ -8,7 +8,7 @@ const posts = await findPostPage(0);
     class="flex flex-col gap-4 w-full"
     id="post-list"
     hx-get="posts/list"
-    hx-trigger="new-post from:body"
+    hx-trigger="reload-posts from:body"
 >
     {posts && posts.map((post) => <Post post={post} />)}
 </div>
