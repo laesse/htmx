@@ -27,6 +27,13 @@ export const insertPost = async (newPost: NewPost) => {
   const db = getDbConnection();
   return db.insert(post).values(newPost);
 };
+export const findPost = async (postId: string) => {
+  const db = getDbConnection();
+  return db.query.post.findFirst({
+    where: eq(post.id, postId),
+    with: { author: true },
+  });
+};
 
 export const deletePost = async (id: string) => {
   const db = getDbConnection();

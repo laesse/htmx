@@ -1,12 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import One from './contact/[id]/index.astro';
+import Layout from "../layouts/Layout.astro";
+import CreatePost from "./post/create.astro";
+import List from "./posts/list.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main
-		class="container mx-auto flex justify-center items-center text-center h-screen overflow-hidden"
-	>
-		<One />
-	</main>
+<Layout title="posts">
+    <h1 class="font-bold text-4xl text-purple-200 self-start">Posts</h1>
+    <CreatePost />
+    <h2 class="font-bold text-2xl text-purple-200 self-start">Some Posts</h2>
+    <List />
 </Layout>

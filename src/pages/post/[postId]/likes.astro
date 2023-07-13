@@ -31,7 +31,7 @@ const attributes = {
 };
 ---
 
-<div class="flex gap-2" hx-swap="outerHTML" {...attributes}>
+<button class="flex gap-2 z-10" hx-swap="outerHTML" {...attributes}>
     <svg
         class="w-6 h-6 mx-auto fill-slate-300 data-[user-liked-post=true]:fill-red-400"
         data-user-liked-post={userLikedPost.toString()}
@@ -48,4 +48,4 @@ const attributes = {
         </path>
     </svg>
     <span>{likes.cnt}</span>
-</div>
+</button>
